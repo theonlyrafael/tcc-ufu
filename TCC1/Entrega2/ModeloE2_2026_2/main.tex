@@ -1,0 +1,179 @@
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	brazil,				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% PACOTES
+% ---
+
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+
+% ---
+
+%--------------Pacotes de citações
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+
+\usepackage{hyperref}
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{plano de trabalho}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+\usepackage{fancyhdr}
+\usepackage{lipsum} % Apenas para gerar texto fictício
+
+% Configuração do cabeçalho especial para a primeira página
+\fancypagestyle{primeirapagina}{
+    \fancyhf{} % Limpa todos os campos de cabeçalho e rodapé
+    \renewcommand{\headrulewidth}{0pt} % Remove a linha horizontal do topo
+    
+    % Define as logos alinhadas na vertical por sua base ([b]) ou centro ([c])
+    \fancyhead[L]{\includegraphics[height=1.5cm]{Images/logo-ufu.png}}
+    \fancyhead[R]{\includegraphics[height=1.2cm]{Images/logo-facom.png}}
+    
+    % Ajusta a distância do cabeçalho para o texto nesta página
+    \setlength{\headsep}{1,5cm} 
+}
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+%-----------------------------------------
+\begin{document}
+
+% Ativa o cabeçalho das logos apenas nesta primeira página
+\thispagestyle{primeirapagina}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+\textbf{Disciplina:} Selecionar a opção correta conforme sua matrícula
+%\textbf{Disciplina:} FACOM31701 - Trabalho de Conclusão de Curso 1 %BSI-UDI
+%\textbf{Disciplina:} FACOM32703 - Projeto de Graduação I - %BSI-UDI Nova
+%\textbf{Disciplina:} FACOM31703 - Trabalho de Conclusão de Curso 1 %BSI-MC (PPC-2016)
+%\textbf{Disciplina:} FACOM33701 - Trabalho de Conclusão de Curso 1 %BSI-MC (PPC-2022)
+%\textbf{Disciplina:} GBC072 - Projeto de Graduação 1 - %BCC
+%\textbf{Disciplina:} FACOM31704 - Metodologia Científica em Computação e Informática %%BCC Nova
+
+\textbf{Professor:} Selecionar a alternativa conforme o professor responsável pela disciplina 
+%\textbf{Professor:} Prof. Dr. Rafael Dias Araújo
+%\textbf{Professor:} Prof. Dr. Victor Sobreira
+
+\textbf{Estudante:} Nome Completo
+
+\textbf{Orientador(a):} Prof.(a) Nome Completo do Professor(a) (se, houver, indicar co-orientador abaixo)
+
+%\textbf{Coorientador(a):} Prof.(a) Nome Completo do(a) Professor(a) Coorientador
+
+\textbf{Tipo de trabalho: } Selecionar conforme modelo sugerido
+%\textbf{Tipo de trabalho: } Projeto de Pesquisa Tradicional OU Relatório Técnico Profissional OU Desenvolvimento de Software OU Plano de Negócios
+
+% ------------------ Título -----------------------
+\section*{\centerline{\Large \textbf{Entrega 2 (E2) - Visão geral sobre a fundamentação teórica}}}
+% -------------------------------------------------
+
+%------------------- Corpo de dados --------------
+\vspace*{0.5cm}
+
+\textbf{1) Identifique, juntamente com o seu orientador(a), quais são os principais conceitos teóricos associados ao seu trabalho. Exemplo 1: se o tema do trabalho é o uso de algoritmos genéticos para análise de risco de crédito, então os principais conceitos são: algoritmos genéticos e análise de risco de crédito. Exemplo 2: se o tema do trabalho é o desenvolvimento de um chatbot para atender a comunidade UFU, então os principais conceitos são: processamento de linguagem natural, chatbots e formas de atendimento à comunidade comumente feitas pelas universidades.}
+
+\textbf{2) Escreva sobre cada um dos conceitos identificados no item anterior. Use a seguinte estratégia: i) forneça as principais definições; ii) apresente um breve histórico; iii) discuta os avanços recentes da área; e iv) mostre alguns exemplos relevantes e ilustrativos. Para todos os casos, incluir as referências consultadas. O objetivo aqui é ter um rascunho da Seção 2 - Fundamentação Teórica. Portanto, é de suma importância analisar outras monografias para entender o que deve ou não ser escrito nesta seção. Outras referências bibliográficas também poderão ser consultadas (por exemplo, artigos científicos e livros).}
+
+\textbf{3) Ao final desta entrega, declare o uso ou não de Inteligência Artificial para produção deste trabalho.}
+
+Observações:
+\begin{enumerate}
+    \item No caso do \textbf{relatório técnico profissional}, o texto a ser apresentado será i) um detalhamento do ambiente de atuação (empresa/instituição onde se trabalha), segmento de atuação, quais são as suas atribuições e responsabilidades dentro da empresa; ii) a definição dos conhecimentos necessários para a execução do trabalho e as restrições técnicas e operacionais do ambiente; iii) os padrões e boas práticas adotados pela equipe para realização das atividades profissionais; iv) o projeto que irá desenvolver destacando seu enquadramento e relevância no contexto empresarial/institucional e acadêmico. Para este modelo, deverá ser entregue também um termo de ciência e concordância para desenvolvimento do trabalho, assinado pelo representante legal e/ou chefia imediata na empresa onde trabalha (ver modelo anexado à entrega).
+    \item No caso do \textbf{desenvolvimento de um software}, crie seções para i) estudo preliminar sobre a viabilidade da proposta, incluindo relevância, diferenciais e motivações, ii) as tecnologias específicas que se pretende utilizar com breve apresentação , histórico e justificativas para a escolha, iii) os principais princípios, técnicas e conceitos de engenharia de software a serem aplicados no desenvolvimento; iv) seções descritivas relacionadas ao domínio/subdomínios envolvidos na aplicação e necessárias para o entendimento da solução.
+    \item No caso de um \textbf{plano de negócios}, descreva: i) o domínio da aplicação e negócio a ser abordado; ii) uma versão inicial do produto e/ou  serviço que será implementado no plano de negócios contendo objetivos, motivações e características; iii) benefícios, diferenciais, limitações e custos envolvidos; iv) o estágio atual de desenvolvimento, expectativas e planejamento preliminar.
+    \item É de suma importância que todos os parágrafos escritos sejam coesos. Ou seja, o texto como um todo precisa fazer sentido;
+    \item Use o formato de citações do Latex para apresentar as referências em todo o texto. Deve ser entendido como as citações funcionam no Latex, em particular com o BibTeX. 
+    \item O posicionamento de citações no texto e orientações da ABNT serão discutidos nas aulas. Lembre-se que no modelo fornecido para a entrega 1, além do arquivo \texttt{main.tex} utilizado para redigir seu texto, há um arquivo chamado \texttt{ref.bib} com alguns exemplos de referências. Um tutorial sobre o overleaf está disponível em \cite{TutorialOverleaf}. 
+    \item Junto da entrega, o aluno deverá anexar um comprovante de concordância do seu orientador quanto ao texto sendo submetido. O comprovante de concordância poderá ser um e-mail do seu orientador, onde ele manifesta autorização para submeter o texto, ou uma assinatura eletrônica no PDF submetido feita pelo orientador, preferencialmente pelo sistema \href{https://www.gov.br/governodigital/pt-br/identidade/assinatura-eletronica}{GovBr} (ou outra plataforma de assinaturas conhecida e com validação pública).
+\end{enumerate}
+
+\chapter{Rascunho da Fundamentação Teórica}
+
+\section{Conceito A}
+
+\section{Conceito B}
+
+\section{Declaração sobre o uso de Inteligência Artificial}
+
+\bibliography{ref}
+
+\end{document}
